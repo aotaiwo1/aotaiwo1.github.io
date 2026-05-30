@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Abdulmalik Taiwo | Cybersecurity Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --white: #ffffff;
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --muted: #6b6b6b;
+    --subtle: #9a9a9a;
+    --border: #e2e0d8;
+    --accent: #1a3a5c;
+    --accent-light: #e8f0f8;
+    --accent-mid: #2d6a9f;
+    --tag-bg: #eef3f9;
+    --tag-text: #1a4a7a;
+    --green: #1d6a4a;
+    --green-bg: #eaf4ef;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(247, 246, 242, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+
+  nav .logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+
+  nav ul li a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 0 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -120px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45,106,159,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    background: var(--accent-light);
+    border: 1px solid #c5d8ef;
+    border-radius: 20px;
+    padding: 5px 14px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent-mid);
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent-mid);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 2rem;
+    max-width: 480px;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    padding: 11px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: #142e4a; transform: translateY(-1px); }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 11px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1.5px solid var(--accent);
+    letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-outline:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+  .hero-avatar {
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-mid) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 3rem;
+    color: white;
+    font-style: italic;
+    flex-shrink: 0;
+    border: 4px solid var(--white);
+    box-shadow: 0 4px 24px rgba(26,58,92,0.15);
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 80px 0;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 2.5rem;
+  }
+
+  /* ABOUT */
+  #about {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+
+  .stat-card .num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-card .label {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  /* EDUCATION */
+  .edu-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem;
+    align-items: start;
+    transition: border-color 0.2s;
+  }
+
+  .edu-card:hover { border-color: var(--accent-mid); }
+
+  .edu-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: var(--accent-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 20px;
+  }
+
+  .edu-school {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .edu-degree {
+    font-size: 14px;
+    color: var(--accent-mid);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .edu-meta {
+    font-size: 12px;
+    color: var(--subtle);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 8px;
+  }
+
+  .edu-gpa {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--green-bg);
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+
+  .coursework {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* EXPERIENCE */
+  .exp-timeline {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .exp-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 8px;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .exp-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 8px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--accent-mid);
+    border: 2px solid var(--bg);
+    transform: translateX(-4px);
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+
+  .exp-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .exp-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--subtle);
+    letter-spacing: 0.04em;
+  }
+
+  .exp-company {
+    font-size: 13px;
+    color: var(--accent-mid);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    padding: 0;
+  }
+
+  .exp-bullets li {
+    font-size: 13.5px;
+    color: var(--muted);
+    padding: 3px 0 3px 1rem;
+    position: relative;
+    line-height: 1.65;
+  }
+
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-mid);
+    font-size: 11px;
+    top: 5px;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .project-card:hover {
+    border-color: var(--accent-mid);
+    transform: translateY(-2px);
+  }
+
+  .project-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    background: var(--tag-bg);
+    border: 1px solid #c5d8ef;
+    border-radius: 4px;
+    padding: 3px 8px;
+    display: inline-block;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .project-bullets {
+    list-style: none;
+    padding: 0;
+    font-size: 12.5px;
+    color: var(--subtle);
+  }
+
+  .project-bullets li {
+    padding: 2px 0 2px 0.9rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .project-bullets li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--accent-mid);
+    font-size: 16px;
+    top: 0px;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .skill-group {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+
+  .skill-group-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .skill-group-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .skill-tag {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 4px 10px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .contact-card:hover {
+    border-color: var(--accent-mid);
+    background: var(--accent-light);
+  }
+
+  .contact-icon {
+    width: 40px; height: 40px;
+    border-radius: 9px;
+    background: var(--accent-light);
+    border: 1px solid #c5d8ef;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .contact-label {
+    font-size: 11px;
+    color: var(--subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 2px;
+  }
+
+  .contact-value {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--subtle);
+    border-top: 1px solid var(--border);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-inner > * {
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-inner > *:nth-child(2) { animation-delay: 0.15s; }
+
+  @media (max-width: 700px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-avatar { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="logo">AT · Portfolio</span>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">Cybersecurity Student &amp; IT Professional</div>
+      <h1>Abdulmalik<br><em>Taiwo</em></h1>
+      <p class="hero-sub">Pursuing a B.S. in Cybersecurity at Lamar University. Passionate about threat analysis, SOC operations, and building secure network environments.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#contact">Get in Touch</a>
+        <a class="btn-outline" href="#projects">View Projects</a>
+      </div>
+    </div>
+    <div class="hero-avatar">AT</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">About Me</p>
+    <h2 class="section-title">Who I Am</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a cybersecurity student based in Rosenberg, TX, combining hands-on technical training with real-world IT experience. My background spans network security, digital forensics, intrusion detection, and IT support operations.</p>
+        <p>I'm driven by a passion for SOC operations, security monitoring, and protecting organizations from evolving cyber threats. I bring both the academic foundation and practical experience to tackle complex security challenges.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="num">3.7</div>
+          <div class="label">Cumulative GPA at TSTC</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">2027</div>
+          <div class="label">Expected B.S. graduation</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">2+</div>
+          <div class="label">Years of IT experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">5+</div>
+          <div class="label">Core security skill areas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <p class="section-label">Education</p>
+    <h2 class="section-title">Academic Background</h2>
+
+    <div class="edu-card">
+      <div class="edu-icon">🎓</div>
+      <div>
+        <div class="edu-school">Lamar University</div>
+        <div class="edu-degree">Bachelor of Science — Cybersecurity</div>
+        <div class="edu-meta">Beaumont, TX &nbsp;·&nbsp; Expected May 2027</div>
+      </div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-icon">📋</div>
+      <div>
+        <div class="edu-school">Texas State Technical College</div>
+        <div class="edu-degree">Associate of Applied Science — Cybersecurity</div>
+        <div class="edu-meta">Rosenberg, TX &nbsp;·&nbsp; Aug 2023 – Aug 2025</div>
+        <div class="edu-gpa">⭐ GPA: 3.7</div>
+        <div class="coursework"><strong style="color:var(--muted)">Relevant Coursework:</strong> Secure Linux Administration · Firewalls &amp; Network Security · Intrusion Detection · Security Assessment &amp; Auditing · IT Security · Networking with TCP/IP · Routers &amp; Switching · Server Virtualization · Digital &amp; Computer Forensics</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <p class="section-label">Work Experience</p>
+    <h2 class="section-title">Professional History</h2>
+
+    <div class="exp-timeline">
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">IT Support Intern II</span>
+          <span class="exp-date">May 2025 – Jun 2025</span>
+        </div>
+        <div class="exp-company">KIPP Foundation · Houston, TX</div>
+        <ul class="exp-bullets">
+          <li>Provided technical support across multiple locations, diagnosing and resolving hardware and system issues.</li>
+          <li>Conducted IT asset inventory audits ensuring accurate tracking, documentation, and lifecycle management.</li>
+          <li>Assessed hardware damage and coordinated repairs or replacements to minimize downtime.</li>
+          <li>Performed hands-on hardware repairs and system troubleshooting.</li>
+          <li>Collaborated with IT teams to improve asset management workflows and support response times.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">Student Bookstore Assistant</span>
+          <span class="exp-date">Jul 2024 – May 2025</span>
+        </div>
+        <div class="exp-company">Texas State Technical College · Rosenberg, TX</div>
+        <ul class="exp-bullets">
+          <li>Supported academic retail operations by distributing textbooks and course materials.</li>
+          <li>Managed inventory, shelf stocking, and POS transactions to maintain accuracy and efficiency.</li>
+          <li>Used POS and inventory systems to enhance process efficiency and data accuracy.</li>
+          <li>Assisted with promotional events to increase engagement and sales.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label">Projects</p>
+    <h2 class="section-title">Technical Work</h2>
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <span class="project-tag">Academic · Network Security</span>
+        <div class="project-title">Enterprise Network Security Lab</div>
+        <p class="project-desc">Designed and secured a simulated enterprise network using routers, switches, and virtualized servers with full threat mitigation configuration.</p>
+        <ul class="project-bullets">
+          <li>Configured Cisco ASA firewalls, VLANs, and ACLs for a 4-floor enterprise</li>
+          <li>Deployed Active Directory, DNS, GPO, IIS web/FTP, and Certificate Authority</li>
+          <li>Hardened hosts with antivirus, UAC, browser policy, and password GPO</li>
+        </ul>
+        <a href="https://github.com/aotaiwo1/Enterprise-Network-Security-Lab" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-top:1rem;font-size:12.5px;font-weight:500;color:var(--accent-mid);text-decoration:none;border:1px solid #c5d8ef;background:var(--tag-bg);padding:6px 14px;border-radius:5px;transition:background 0.2s;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tag">Academic · Forensics</span>
+        <div class="project-title">Digital &amp; Computer Forensics Investigation</div>
+        <p class="project-desc">Performed forensic analysis on compromised systems to identify indicators of compromise, attack vectors, and digital evidence chains.</p>
+        <ul class="project-bullets">
+          <li>Collected, preserved, and analyzed digital evidence</li>
+          <li>Identified indicators of compromise and attack vectors</li>
+          <li>Produced structured incident reports with security impact</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label">Skills</p>
+    <h2 class="section-title">Technical Capabilities</h2>
+
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Cybersecurity</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Threat Analysis</span>
+          <span class="skill-tag">Intrusion Detection</span>
+          <span class="skill-tag">Vulnerability Assessment</span>
+          <span class="skill-tag">Risk Assessment</span>
+          <span class="skill-tag">Security Auditing</span>
+          <span class="skill-tag">Incident Response</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Networking</div>
+        <div class="skill-tags">
+          <span class="skill-tag">TCP/IP</span>
+          <span class="skill-tag">Routers &amp; Switching</span>
+          <span class="skill-tag">Firewalls</span>
+          <span class="skill-tag">Network Security Controls</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">IT &amp; Systems</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Hardware Troubleshooting</span>
+          <span class="skill-tag">Desktop Support</span>
+          <span class="skill-tag">Asset Management</span>
+          <span class="skill-tag">Ticket Resolution</span>
+          <span class="skill-tag">POS Systems</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">Operating Systems &amp; Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Linux (Secure Admin)</span>
+          <span class="skill-tag">Windows</span>
+          <span class="skill-tag">Server Virtualization</span>
+          <span class="skill-tag">Security Documentation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Get in Touch</h2>
+
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:abdulmalikotaiwo@gmail.com">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">abdulmalikotaiwo@gmail.com</div>
+        </div>
+      </a>
+
+      <a class="contact-card" href="tel:8329380519">
+        <div class="contact-icon">📱</div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value">832-938-0519</div>
+        </div>
+      </a>
+
+      <a class="contact-card" href="https://www.linkedin.com/in/abdulmalik-taiwo" target="_blank">
+        <div class="contact-icon">💼</div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value">linkedin.com/in/abdulmalik-taiwo</div>
+        </div>
+      </a>
+
+      <a class="contact-card" href="https://github.com/aotaiwo1" target="_blank">
+        <div class="contact-icon">🐙</div>
+        <div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-value">github.com/aotaiwo1</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Abdulmalik Taiwo &nbsp;·&nbsp; Cybersecurity Portfolio
+</footer>
+
+</body>
+</html>
